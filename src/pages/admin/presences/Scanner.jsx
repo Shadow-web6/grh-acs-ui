@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import api from "../../../api/axios";
 import { toast } from "react-toastify";
+import { Camera, CheckCircle2, LogOut, AlertTriangle } from "lucide-react";
 
 const QR_ELEMENT_ID = "qr-reader-region";
 
@@ -99,9 +100,10 @@ const Scanner = () => {
           {!scanning ? (
             <button
               onClick={startScanner}
-              className="bg-[#005DCB] text-white px-8 py-3 rounded-xl font-medium hover:bg-[#004BA8] transition shadow-md"
+              className="bg-[#005DCB] text-white px-8 py-3 rounded-xl font-medium hover:bg-[#004BA8] transition shadow-md flex items-center gap-2"
             >
-              📷 Démarrer le scan
+              <Camera className="w-5 h-5" />
+              Démarrer le scan
             </button>
           ) : (
             <button
@@ -122,7 +124,13 @@ const Scanner = () => {
         }`}>
           {dernierScan.success ? (
             <div className="text-center">
-              <div className="text-4xl mb-2">{dernierScan.type === "arrivee" ? "✅" : "👋"}</div>
+              <div className="flex justify-center mb-2">
+                {dernierScan.type === "arrivee" ? (
+                  <CheckCircle2 className="w-10 h-10 text-green-600" />
+                ) : (
+                  <LogOut className="w-10 h-10 text-amber-600" />
+                )}
+              </div>
               <h3 className="text-gray-900 font-bold text-lg mb-1">{dernierScan.employe}</h3>
               <p className="text-green-600 font-medium">
                 {dernierScan.type === "arrivee" ? "Arrivée enregistrée" : "Départ enregistré"}
@@ -131,7 +139,9 @@ const Scanner = () => {
             </div>
           ) : (
             <div className="text-center">
-              <div className="text-4xl mb-2">⚠️</div>
+              <div className="flex justify-center mb-2">
+                <AlertTriangle className="w-10 h-10 text-red-500" />
+              </div>
               <p className="text-red-600 font-medium">{dernierScan.message}</p>
             </div>
           )}

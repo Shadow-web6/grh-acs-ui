@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api/axios";
 import { toast } from "react-toastify";
+import { Users, Pencil } from "lucide-react";
 
 const couleurs = [
   { bord: "border-l-[#005DCB]", badge: "bg-blue-50 text-[#005DCB]" },
@@ -141,13 +142,14 @@ const Departements = ({ basePath = "/admin" }) => {
                   onClick={() => navigate(`${basePath}/employes?departement=${dept.id}`)}
                   className="flex-1 bg-gray-50 hover:bg-gray-100 text-gray-600 text-sm py-2.5 rounded-lg transition flex items-center justify-center gap-2"
                 >
-                  👥 Voir les employés
+                  <Users className="w-4 h-4" />
+                  Voir les employés
                 </button>
                 <button
                   onClick={() => handleEdit(dept)}
-                  className="bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 rounded-lg transition"
+                  className="bg-gray-50 hover:bg-gray-100 text-gray-600 px-3 rounded-lg transition flex items-center justify-center"
                 >
-                  ✏️
+                  <Pencil className="w-4 h-4" />
                 </button>
               </div>
             </div>

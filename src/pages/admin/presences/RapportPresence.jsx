@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../../api/axios";
 import { toast } from "react-toastify";
+import { Search } from "lucide-react";
 
 const mois = [
   "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
@@ -130,9 +131,10 @@ const HistoriquePresence = () => {
 
         <button
           onClick={fetchHistorique}
-          className="mt-4 bg-[#005DCB] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition"
+          className="mt-4 bg-[#005DCB] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition flex items-center gap-2"
         >
-          🔍 Filtrer
+          <Search className="w-4 h-4" />
+          Filtrer
         </button>
       </div>
 

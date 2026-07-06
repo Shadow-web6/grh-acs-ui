@@ -1,6 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/axios";
+import {
+  KeyRound,
+  Building2,
+  Camera,
+  Calendar,
+  ClipboardList,
+  BarChart3,
+  Users,
+  Hourglass,
+  CheckCircle2,
+} from "lucide-react";
 
 const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
   const [stats, setStats] = useState({
@@ -56,20 +67,20 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
 
   const actionsParRole = {
     admin: [
-      { icon: "🔐", label: "Nouveau compte", to: `${basePath}/utilisateurs` },
-      { icon: "🏢", label: "Départements", to: `${basePath}/departements` },
+      { icon: KeyRound, label: "Nouveau compte", to: `${basePath}/utilisateurs` },
+      { icon: Building2, label: "Départements", to: `${basePath}/departements` },
     ],
     drh: [
-      { icon: "📷", label: "Scanner présence", to: `${basePath}/scanner` },
-      { icon: "📅", label: "Traiter absences", to: `${basePath}/absences` },
-      { icon: "📋", label: "Recrutement", to: `${basePath}/recrutement` },
-      { icon: "📊", label: "Historique présences", to: `${basePath}/historique-presence` },
+      { icon: Camera, label: "Scanner présence", to: `${basePath}/scanner` },
+      { icon: Calendar, label: "Traiter absences", to: `${basePath}/absences` },
+      { icon: ClipboardList, label: "Recrutement", to: `${basePath}/recrutement` },
+      { icon: BarChart3, label: "Historique présences", to: `${basePath}/historique-presence` },
     ],
     directeur: [
-      { icon: "📅", label: "Traiter absences", to: `${basePath}/absences` },
-      { icon: "👥", label: "Employés", to: `${basePath}/employes` },
-      { icon: "📋", label: "Recrutement", to: `${basePath}/recrutement` },
-      { icon: "🏢", label: "Départements", to: `${basePath}/departements` },
+      { icon: Calendar, label: "Traiter absences", to: `${basePath}/absences` },
+      { icon: Users, label: "Employés", to: `${basePath}/employes` },
+      { icon: ClipboardList, label: "Recrutement", to: `${basePath}/recrutement` },
+      { icon: Building2, label: "Départements", to: `${basePath}/departements` },
     ],
   };
 
@@ -92,7 +103,7 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
                 {loading ? "..." : stats.totalComptes}
               </p>
             </div>
-            <span className="text-3xl">👥</span>
+            <Users className="w-8 h-8 text-[#005DCB]" />
           </Link>
 
           <Link
@@ -105,22 +116,25 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
                 {loading ? "..." : stats.totalDepartements}
               </p>
             </div>
-            <span className="text-3xl">🏢</span>
+            <Building2 className="w-8 h-8 text-[#005DCB]" />
           </Link>
         </div>
 
         <h3 className="text-gray-900 font-semibold mb-4">Actions rapides</h3>
         <div className="grid grid-cols-2 gap-4">
-          {actions.map((action, i) => (
-            <Link
-              key={i}
-              to={action.to}
-              className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
-            >
-              <span className="text-3xl">{action.icon}</span>
-              <span className="text-sm font-medium">{action.label}</span>
-            </Link>
-          ))}
+          {actions.map((action, i) => {
+            const Icon = action.icon;
+            return (
+              <Link
+                key={i}
+                to={action.to}
+                className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
+              >
+                <Icon className="w-7 h-7" />
+                <span className="text-sm font-medium">{action.label}</span>
+              </Link>
+            );
+          })}
         </div>
       </div>
     );
@@ -143,7 +157,7 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
               {loadingDrh ? "..." : demandesEnAttente}
             </p>
           </div>
-          <span className="text-3xl">⏳</span>
+          <Hourglass className="w-8 h-8 text-amber-500" />
         </Link>
 
         {peutScanner && (
@@ -157,23 +171,26 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
                 {loadingDrh ? "..." : presentsAujourdhui ?? "-"}
               </p>
             </div>
-            <span className="text-3xl">✅</span>
+            <CheckCircle2 className="w-8 h-8 text-green-600" />
           </Link>
         )}
       </div>
 
       <h3 className="text-gray-900 font-semibold mb-4">Actions rapides</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {actions.map((action, i) => (
-          <Link
-            key={i}
-            to={action.to}
-            className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
-          >
-            <span className="text-3xl">{action.icon}</span>
-            <span className="text-sm font-medium">{action.label}</span>
-          </Link>
-        ))}
+        {actions.map((action, i) => {
+          const Icon = action.icon;
+          return (
+            <Link
+              key={i}
+              to={action.to}
+              className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
+            >
+              <Icon className="w-7 h-7" />
+              <span className="text-sm font-medium">{action.label}</span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

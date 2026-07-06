@@ -19,6 +19,7 @@ function App() {
         <ToastContainer position="top-right" autoClose={3000} theme="dark" />
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/postuler" element={<Postuler />} />
           <Route path="/admin/*" element={
             <PrivateRoute roles={["admin"]}>
               <AdminDashboard />

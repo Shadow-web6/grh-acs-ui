@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 import logo from "../assets/logo.png";
+import { Users, Calendar, Building2, ClipboardList, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,16 +49,19 @@ const Login = () => {
 
           <div className="grid grid-cols-2 gap-4 text-left max-w-md mx-auto">
             {[
-              { icon: "👥", text: "Gestion des employés" },
-              { icon: "📅", text: "Congés & permissions" },
-              { icon: "🏢", text: "Départements" },
-              { icon: "📋", text: "Recrutement" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl p-3">
-                <span className="text-2xl">{item.icon}</span>
-                <span className="text-sm text-white">{item.text}</span>
-              </div>
-            ))}
+              { icon: Users, text: "Gestion des employés" },
+              { icon: Calendar, text: "Congés & permissions" },
+              { icon: Building2, text: "Départements" },
+              { icon: ClipboardList, text: "Recrutement" },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <div key={i} className="flex items-center gap-3 bg-white/10 border border-white/20 rounded-xl p-3">
+                  <Icon className="w-5 h-5 text-white" />
+                  <span className="text-sm text-white">{item.text}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
         <p className="text-center text-xs text-gray-400 mt-6">
@@ -73,7 +77,7 @@ const Login = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Bon retour ! 👋</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Bon retour !</h2>
             <p className="text-gray-500 mb-8">Connectez-vous à votre espace RH</p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -82,7 +86,7 @@ const Login = () => {
                   Adresse email
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">📧</span>
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
                     type="email"
                     value={email}
@@ -99,7 +103,7 @@ const Login = () => {
                   Mot de passe
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔒</span>
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={password}
@@ -113,7 +117,7 @@ const Login = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    {showPassword ? "🙈" : "👁️"}
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>

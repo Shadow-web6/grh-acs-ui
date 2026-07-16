@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'hhttps://grh-datalinks-api-production.up.railway.app/api',
+  baseURL: 'https://grh-datalinks-api-production.up.railway.app/api',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',

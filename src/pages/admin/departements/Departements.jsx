@@ -14,7 +14,7 @@ const couleurs = [
   { bord: "border-l-orange-500", badge: "bg-orange-50 text-orange-600" },
 ];
 
-const Departements = ({ basePath = "/admin" }) => {
+const Departements = ({ basePath = "/admin", role = "admin" }) => {
   const [departements, setDepartements] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -74,15 +74,17 @@ const Departements = ({ basePath = "/admin" }) => {
           <h2 className="text-2xl font-bold text-gray-900 mb-1">Départements</h2>
           <p className="text-gray-500 text-sm">{departements.length} départements configurés</p>
         </div>
-        <button
-          onClick={() => { setShowForm(!showForm); setEditId(null); setForm({ nom: "", description: "" }); }}
-          className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
-        >
-          {showForm ? "Annuler" : "+ Nouveau département"}
-        </button>
+        {role !== "drh" && (
+          <button
+            onClick={() => { setShowForm(!showForm); setEditId(null); setForm({ nom: "", description: "" }); }}
+            className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+          >
+            {showForm ? "Annuler" : "+ Nouveau département"}
+          </button>
+        )}
       </div>
 
-      {showForm && (
+      {showForm && role !== "drh" && (
         <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6 shadow-sm">
           <h3 className="text-gray-900 font-semibold mb-4">
             {editId ? "Modifier le département" : "Nouveau département"}

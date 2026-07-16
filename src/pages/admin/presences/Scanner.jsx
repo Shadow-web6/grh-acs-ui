@@ -3,10 +3,11 @@ import { Html5Qrcode } from "html5-qrcode";
 import api from "../../../api/axios";
 import { toast } from "react-toastify";
 import { Camera, CheckCircle2, LogOut, AlertTriangle } from "lucide-react";
+import PinGate from "../../../components/PinGate";
 
 const QR_ELEMENT_ID = "qr-reader-region";
 
-const Scanner = () => {
+const ScannerContent = () => {
   const [scanning, setScanning] = useState(false);
   const [dernierScan, setDernierScan] = useState(null);
   const html5QrCodeRef = useRef(null);
@@ -157,4 +158,10 @@ const Scanner = () => {
   );
 };
 
-export default Scanner;
+export default function Scanner() {
+  return (
+    <PinGate>
+      <ScannerContent />
+    </PinGate>
+  );
+}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "../../api/axios";
+import PinGate from "../../components/PinGate";
 
-const MonQrCode = () => {
+const MonQrCodeContent = () => {
   const [qrToken, setQrToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -45,4 +46,10 @@ const MonQrCode = () => {
   );
 };
 
-export default MonQrCode;
+export default function MonQrCode() {
+  return (
+    <PinGate>
+      <MonQrCodeContent />
+    </PinGate>
+  );
+}

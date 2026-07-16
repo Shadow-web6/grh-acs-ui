@@ -10,6 +10,7 @@ import DirecteurDashboard from "./pages/directeur/Dashboard";
 import EmployeDashboard from "./pages/employe/Dashboard";
 import StagiaireDashboard from "./pages/stagiaire/Dashboard";
 import Postuler from "./pages/public/Postuler";
+import InactivityLogout from "./components/InactivityLogout";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <ToastContainer position="top-right" autoClose={3000} theme="dark" />
+        <InactivityLogout />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/postuler" element={<Postuler />} />

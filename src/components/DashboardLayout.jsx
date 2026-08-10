@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Notifications from "./Notifications";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 import {
   LayoutDashboard, Users, GraduationCap, Calendar, Camera,
   FileText, Briefcase, ClipboardList, Lock, Building2, User, FileEdit
@@ -90,9 +90,9 @@ const DashboardLayout = ({ menuSections, children, role, pageTitle }) => {
         {/* Logo */}
         <div className="p-6 border-b border-gray-100">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Data Links" className="w-9 h-9 rounded-full flex-shrink-0" />
+            <img src={logo} alt="L'Acier Conseils & Services" className="w-9 h-9 rounded-full flex-shrink-0" />
             <div>
-              <h1 className="text-sm font-bold text-gray-900 leading-tight">DATA LINKS</h1>
+              <h1 className="text-sm font-bold text-gray-900 leading-tight">GRH ACS</h1>
               <p className="text-[10px] text-gray-400 tracking-wider uppercase">Système RH</p>
             </div>
           </div>
@@ -123,7 +123,7 @@ const DashboardLayout = ({ menuSections, children, role, pageTitle }) => {
                       to={item.path}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150
                         ${active
-                          ? 'bg-[#005DCB] text-white font-medium shadow-sm'
+                          ? 'bg-[#129547] text-white font-medium shadow-sm'
                           : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'}`}
                     >
                       <IconComponent className="w-[18px] h-[18px] flex-shrink-0" strokeWidth={1.8} />
@@ -139,7 +139,7 @@ const DashboardLayout = ({ menuSections, children, role, pageTitle }) => {
         {/* Badge utilisateur */}
         <div className="p-4 border-t border-gray-100">
           <div className="flex items-center gap-3 bg-gray-50 rounded-xl p-3">
-            <div className="w-9 h-9 bg-[#005DCB] rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+            <div className="w-9 h-9 bg-[#129547] rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
               {initials}
             </div>
             <div className="flex-1 min-w-0">
@@ -157,7 +157,7 @@ const DashboardLayout = ({ menuSections, children, role, pageTitle }) => {
             </button>
           </div>
           <p className="text-center text-[10px] text-gray-300 mt-3">
-            Easy HR — par Anaël TCHIBOZO & Lael HOUNTO-HOTEGBE 
+            GRH ACS — par Anaël TCHIBOZO 
           </p>
         </div>
       </aside>

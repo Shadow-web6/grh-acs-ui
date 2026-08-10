@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../api/axios";
 import { toast } from "react-toastify";
+import { FileUp, FileCheck, Download } from "lucide-react";
 
 const MesTravaux = () => {
   const [historique, setHistorique] = useState([]);
@@ -9,18 +10,24 @@ const MesTravaux = () => {
   const [form, setForm] = useState({ titre: "", description: "" });
   const [dejaSaisiAujourdhui, setDejaSaisiAujourdhui] = useState(false);
 
+  const [rapportFinal, setRapportFinal] = useState(null);
+  const [fichierRapport, setFichierRapport] = useState(null);
+  const [uploadingRapport, setUploadingRapport] = useState(false);
+
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [histRes, jourRes] = await Promise.all([
+      const [histRes, jourRes, rapportRes] = await Promise.all([
         api.get("/travaux-stagiaire"),
         api.get("/travaux-stagiaire/aujourd-hui"),
+        api.get("/travaux-stagiaire/mon-rapport-final"),
       ]);
       setHistorique(histRes.data);
       if (jourRes.data) {
         setForm({ titre: jourRes.data.titre, description: jourRes.data.description });
         setDejaSaisiAujourdhui(true);
       }
+      setRapportFinal(rapportRes.data);
     } catch {
       toast.error("Erreur de chargement");
     } finally {
@@ -44,9 +51,34 @@ const MesTravaux = () => {
     }
   };
 
+  const handleUploadRapportFinal = async (e) => {
+    e.preventDefault();
+    if (!fichierRapport) return;
+
+    if (rapportFinal && !window.confirm(
+      "Un rapport final a déjà été déposé. Le déposer à nouveau remplacera définitivement l'ancien fichier. Confirmez-vous ?"
+    )) return;
+
+    setUploadingRapport(true);
+    try {
+      const formData = new FormData();
+      formData.append("rapport_final", fichierRapport);
+      await api.post("/travaux-stagiaire/rapport-final", formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+      toast.success("Rapport final déposé avec succès");
+      setFichierRapport(null);
+      fetchData();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Erreur lors du dépôt du rapport");
+    } finally {
+      setUploadingRapport(false);
+    }
+  };
+
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -56,6 +88,46 @@ const MesTravaux = () => {
       <p className="text-gray-500 text-sm mb-6">
         Renseignez quotidiennement ce que vous avez réalisé aujourd'hui
       </p>
+
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6 shadow-sm">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-gray-900 font-semibold">Rapport final de stage</h3>
+            <p className="text-gray-500 text-xs mt-1">Document PDF unique — un nouveau dépôt remplace le précédent</p>
+          </div>
+          {rapportFinal && (
+            <span className="text-xs bg-green-50 text-green-600 px-3 py-1 rounded-full flex items-center gap-1">
+              <FileCheck className="w-3.5 h-3.5" /> Déposé
+            </span>
+          )}
+        </div>
+
+        {rapportFinal && (
+          <a
+            href={`http://127.0.0.1:8000/storage/${rapportFinal.chemin_fichier}`}
+            target="_blank" rel="noreferrer"
+            className="flex items-center gap-2 text-sm text-[#129547] hover:underline mb-4"
+          >
+            <Download className="w-4 h-4" /> {rapportFinal.nom_fichier}
+          </a>
+        )}
+
+        <form onSubmit={handleUploadRapportFinal} className="flex flex-col sm:flex-row gap-3">
+          <input
+            type="file" accept="application/pdf"
+            onChange={e => setFichierRapport(e.target.files[0])}
+            className="flex-1 text-sm text-gray-500 bg-white border border-gray-300 rounded-xl p-2.5 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-100 file:text-gray-700 file:text-xs"
+          />
+          <button
+            type="submit"
+            disabled={!fichierRapport || uploadingRapport}
+            className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition disabled:opacity-50 flex items-center justify-center gap-2 whitespace-nowrap"
+          >
+            <FileUp className="w-4 h-4" />
+            {uploadingRapport ? "Envoi..." : rapportFinal ? "Remplacer" : "Déposer"}
+          </button>
+        </form>
+      </div>
 
       <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-8 shadow-sm">
         <div className="flex items-center justify-between mb-5">
@@ -72,7 +144,7 @@ const MesTravaux = () => {
             onChange={e => setForm({ ...form, titre: e.target.value })}
             placeholder="Titre (ex: Intégration module React)"
             required
-            className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+            className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
           />
           <textarea
             value={form.description}
@@ -80,12 +152,12 @@ const MesTravaux = () => {
             placeholder="Décrivez ce que vous avez réalisé aujourd'hui..."
             rows={5}
             required
-            className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+            className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
           />
           <button
             type="submit"
             disabled={submitting}
-            className="bg-[#005DCB] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition disabled:opacity-50"
+            className="bg-[#129547] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition disabled:opacity-50"
           >
             {submitting ? "Enregistrement..." : dejaSaisiAujourdhui ? "Mettre à jour" : "Enregistrer"}
           </button>

@@ -45,7 +45,7 @@ const AccueilEmploye = ({ basePath = "/employe" }) => {
             <Link
               key={i}
               to={action.to}
-              className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
+              className="bg-[#129547] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#0E7739] transition shadow-md"
             >
               <Icon className="w-7 h-7" />
               <span className="text-sm font-medium">{action.label}</span>

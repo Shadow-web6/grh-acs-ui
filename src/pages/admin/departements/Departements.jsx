@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Users, Pencil } from "lucide-react";
 
 const couleurs = [
-  { bord: "border-l-[#005DCB]", badge: "bg-blue-50 text-[#005DCB]" },
+  { bord: "border-l-[#129547]", badge: "bg-blue-50 text-[#129547]" },
   { bord: "border-l-cyan-500", badge: "bg-cyan-50 text-cyan-600" },
   { bord: "border-l-green-500", badge: "bg-green-50 text-green-600" },
   { bord: "border-l-amber-500", badge: "bg-amber-50 text-amber-600" },
@@ -63,7 +63,7 @@ const Departements = ({ basePath = "/admin", role = "admin" }) => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -77,7 +77,7 @@ const Departements = ({ basePath = "/admin", role = "admin" }) => {
         {role !== "drh" && (
           <button
             onClick={() => { setShowForm(!showForm); setEditId(null); setForm({ nom: "", description: "" }); }}
-            className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+            className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition shadow-md"
           >
             {showForm ? "Annuler" : "+ Nouveau département"}
           </button>
@@ -95,7 +95,7 @@ const Departements = ({ basePath = "/admin", role = "admin" }) => {
               value={form.nom}
               onChange={e => setForm({ ...form, nom: e.target.value })}
               placeholder="Nom du département"
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
               required
             />
             <textarea
@@ -103,11 +103,11 @@ const Departements = ({ basePath = "/admin", role = "admin" }) => {
               onChange={e => setForm({ ...form, description: e.target.value })}
               placeholder="Description"
               rows={2}
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
             />
             <button
               type="submit"
-              className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition w-fit"
+              className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition w-fit"
             >
               {editId ? "Modifier" : "Créer"}
             </button>

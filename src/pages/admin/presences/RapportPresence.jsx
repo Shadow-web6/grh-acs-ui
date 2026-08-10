@@ -63,19 +63,19 @@ const HistoriquePresence = () => {
         <div className="flex gap-2 mb-4">
           <button
             onClick={() => setModeFiltre("jour")}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition ${modeFiltre === "jour" ? "bg-[#005DCB] text-white" : "bg-gray-50 text-gray-500"}`}
+            className={`px-4 py-2 rounded-xl text-sm font-medium transition ${modeFiltre === "jour" ? "bg-[#129547] text-white" : "bg-gray-50 text-gray-500"}`}
           >
             Par jour
           </button>
           <button
             onClick={() => setModeFiltre("mois")}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition ${modeFiltre === "mois" ? "bg-[#005DCB] text-white" : "bg-gray-50 text-gray-500"}`}
+            className={`px-4 py-2 rounded-xl text-sm font-medium transition ${modeFiltre === "mois" ? "bg-[#129547] text-white" : "bg-gray-50 text-gray-500"}`}
           >
             Par mois
           </button>
           <button
             onClick={() => setModeFiltre("annee")}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition ${modeFiltre === "annee" ? "bg-[#005DCB] text-white" : "bg-gray-50 text-gray-500"}`}
+            className={`px-4 py-2 rounded-xl text-sm font-medium transition ${modeFiltre === "annee" ? "bg-[#129547] text-white" : "bg-gray-50 text-gray-500"}`}
           >
             Par année
           </button>
@@ -87,7 +87,7 @@ const HistoriquePresence = () => {
               type="date"
               value={filtres.date}
               onChange={e => setFiltres({ ...filtres, date: e.target.value })}
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
             />
           )}
 
@@ -96,7 +96,7 @@ const HistoriquePresence = () => {
               <select
                 value={filtres.mois}
                 onChange={e => setFiltres({ ...filtres, mois: e.target.value })}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
               >
                 {mois.map((m, i) => <option key={i} value={i + 1}>{m}</option>)}
               </select>
@@ -104,7 +104,7 @@ const HistoriquePresence = () => {
                 type="number"
                 value={filtres.annee}
                 onChange={e => setFiltres({ ...filtres, annee: e.target.value })}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
               />
             </>
           )}
@@ -115,14 +115,14 @@ const HistoriquePresence = () => {
               value={filtres.annee}
               onChange={e => setFiltres({ ...filtres, annee: e.target.value })}
               placeholder="Année (ex: 2024)"
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
             />
           )}
 
           <select
             value={filtres.employe_id}
             onChange={e => setFiltres({ ...filtres, employe_id: e.target.value })}
-            className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+            className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
           >
             <option value="">Tous les employés</option>
             {employes.map(e => <option key={e.id} value={e.id}>{e.user?.name}</option>)}
@@ -131,7 +131,7 @@ const HistoriquePresence = () => {
 
         <button
           onClick={fetchHistorique}
-          className="mt-4 bg-[#005DCB] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition flex items-center gap-2"
+          className="mt-4 bg-[#129547] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition flex items-center gap-2"
         >
           <Search className="w-4 h-4" />
           Filtrer
@@ -140,7 +140,7 @@ const HistoriquePresence = () => {
 
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
         </div>
       ) : (
         <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">

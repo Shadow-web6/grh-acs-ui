@@ -15,7 +15,7 @@ const MonProfil = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -62,7 +62,7 @@ const MonProfil = () => {
                   href={`http://127.0.0.1:8000/storage/${doc.chemin_fichier}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-xs text-[#005DCB] hover:underline"
+                  className="text-xs text-[#129547] hover:underline"
                 
                   Voir
                 </a>

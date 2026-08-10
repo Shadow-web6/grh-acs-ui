@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 import { Users, Calendar, Building2, ClipboardList, Mail, Lock, Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
@@ -33,17 +33,17 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex"> 
-      <div className="hidden lg:flex lg:w-1/2 bg-[#005DCB] flex-col items-center justify-center p-12 relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 bg-[#129547] flex-col items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full blur-3xl -mr-20 -mt-20"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl -ml-20 -mb-20"></div>
 
         <div className="text-center relative z-10">
-          <img src={logo} alt="Data Links" className="w-20 h-20 rounded-2xl mb-6 shadow-lg mx-auto" />
-          <h1 className="text-4xl font-bold mb-2 text-white">EASY HR</h1>
+          <img src={logo} alt="L'Acier Conseils & Services" className="w-20 h-20 rounded-2xl mb-6 shadow-lg mx-auto" />
+          <h1 className="text-4xl font-bold mb-2 text-white">GRH ACS</h1>
           <p className="text-yellow-300 font-semibold text-lg mb-8 tracking-wide">
             Simplifiez la gestion de vos ressources humaines
           </p>
-          <p className="text-blue-100 mb-10 max-w-sm mx-auto">
+          <p className="text-green-100 mb-10 max-w-sm mx-auto">
             Plateforme de Gestion des Ressources Humaines
           </p>
 
@@ -65,15 +65,15 @@ const Login = () => {
           </div>
         </div>
         <p className="text-center text-xs text-gray-400 mt-6">
-          Développé par <span className="font-medium text-gray-500">AnaëlTCHIBOZO & Lael HOUNTO-HOTEGBE</span>
+          Développé par <span className="font-medium text-white-500">Anaël TCHIBOZO</span>
         </p>
       </div>
 
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gray-50">
         <div className="w-full max-w-md">
           <div className="lg:hidden text-center mb-8">
-            <img src={logo} alt="Data Links" className="w-16 h-16 rounded-2xl mb-3 mx-auto" />
-            <h1 className="text-2xl font-bold text-gray-900">EASY HR</h1>
+            <img src={logo} alt="L'Acier Conseils & Services" className="w-16 h-16 rounded-2xl mb-3 mx-auto" />
+            <h1 className="text-2xl font-bold text-gray-900">GRH ACS</h1>
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
@@ -91,8 +91,8 @@ const Login = () => {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    placeholder="nom@datalinks.bj"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#005DCB] focus:border-transparent transition"
+                    placeholder="nom@acs.bj"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#129547] focus:border-transparent transition"
                     required
                   />
                 </div>
@@ -109,7 +109,7 @@ const Login = () => {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#005DCB] focus:border-transparent transition"
+                    className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#129547] focus:border-transparent transition"
                     required
                   />
                   <button
@@ -125,7 +125,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#005DCB] text-white py-3 rounded-xl font-semibold hover:bg-[#004BA8] transition-all duration-200 shadow-lg shadow-[#005DCB]/20 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#129547] text-white py-3 rounded-xl font-semibold hover:bg-[#0E7739] transition-all duration-200 shadow-lg shadow-[#129547]/20 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">

@@ -57,7 +57,7 @@ const PinGate = ({ children }) => {
   if (!statutCharge) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
       </div>
     );
   }
@@ -66,8 +66,8 @@ const PinGate = ({ children }) => {
 
   return (
     <div className="max-w-sm mx-auto mt-10 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm text-center">
-      <div className="w-14 h-14 bg-[#005DCB]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-        {pinDefini ? <Lock className="w-6 h-6 text-[#005DCB]" /> : <ShieldCheck className="w-6 h-6 text-[#005DCB]" />}
+      <div className="w-14 h-14 bg-[#129547]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+        {pinDefini ? <Lock className="w-6 h-6 text-[#129547]" /> : <ShieldCheck className="w-6 h-6 text-[#129547]" />}
       </div>
 
       {pinDefini ? (
@@ -79,11 +79,11 @@ const PinGate = ({ children }) => {
               type="password" inputMode="numeric" maxLength={6} autoFocus
               value={pin} onChange={e => setPin(e.target.value.replace(/\D/g, ""))}
               placeholder="••••"
-              className="w-full text-center text-2xl tracking-widest bg-white border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#005DCB]"
+              className="w-full text-center text-2xl tracking-widest bg-white border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#129547]"
             />
             {erreur && <p className="text-red-500 text-xs">{erreur}</p>}
             <button type="submit" disabled={submitting || pin.length < 4}
-              className="w-full bg-[#005DCB] text-white py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition disabled:opacity-50">
+              className="w-full bg-[#129547] text-white py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition disabled:opacity-50">
               {submitting ? "Vérification..." : "Déverrouiller"}
             </button>
           </form>
@@ -97,17 +97,17 @@ const PinGate = ({ children }) => {
               type="password" inputMode="numeric" maxLength={6} autoFocus
               value={pin} onChange={e => setPin(e.target.value.replace(/\D/g, ""))}
               placeholder="Nouveau PIN"
-              className="w-full text-center text-lg tracking-widest bg-white border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#005DCB]"
+              className="w-full text-center text-lg tracking-widest bg-white border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#129547]"
             />
             <input
               type="password" inputMode="numeric" maxLength={6}
               value={pinConfirmation} onChange={e => setPinConfirmation(e.target.value.replace(/\D/g, ""))}
               placeholder="Confirmer le PIN"
-              className="w-full text-center text-lg tracking-widest bg-white border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#005DCB]"
+              className="w-full text-center text-lg tracking-widest bg-white border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#129547]"
             />
             {erreur && <p className="text-red-500 text-xs">{erreur}</p>}
             <button type="submit" disabled={submitting}
-              className="w-full bg-[#005DCB] text-white py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition disabled:opacity-50">
+              className="w-full bg-[#129547] text-white py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition disabled:opacity-50">
               {submitting ? "Création..." : "Créer mon PIN"}
             </button>
           </form>

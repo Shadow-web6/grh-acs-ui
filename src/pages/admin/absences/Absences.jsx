@@ -74,7 +74,7 @@ const Absences = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -87,7 +87,7 @@ const Absences = () => {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+          className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition shadow-md"
         >
           {showForm ? "Annuler" : "+ Nouvelle demande"}
         </button>
@@ -99,7 +99,7 @@ const Absences = () => {
             key={s}
             onClick={() => setFiltreStatut(s)}
             className={`px-4 py-2 rounded-xl text-sm font-medium transition
-              ${filtreStatut === s ? "bg-[#005DCB] text-white" : "bg-white border border-gray-200 text-gray-500 hover:text-gray-800"}`}
+              ${filtreStatut === s ? "bg-[#129547] text-white" : "bg-white border border-gray-200 text-gray-500 hover:text-gray-800"}`}
           >
             {s === "tous" ? "Tous" : statutLabel[s]}
           </button>
@@ -114,7 +114,7 @@ const Absences = () => {
               value={form.employe_id}
               onChange={e => setForm({ ...form, employe_id: e.target.value })}
               required
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
             >
               <option value="">Sélectionner un employé *</option>
               {employes.map(e => (
@@ -125,7 +125,7 @@ const Absences = () => {
             <select
               value={form.type}
               onChange={e => setForm({ ...form, type: e.target.value })}
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
             >
               <option value="conge">Congé</option>
               <option value="permission">Permission</option>
@@ -134,12 +134,12 @@ const Absences = () => {
             <div>
               <label className="text-xs text-gray-500 mb-1 block">Date de début *</label>
               <input type="date" value={form.date_debut} onChange={e => setForm({ ...form, date_debut: e.target.value })} required
-                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
             </div>
             <div>
               <label className="text-xs text-gray-500 mb-1 block">Date de fin</label>
               <input type="date" value={form.date_fin} onChange={e => setForm({ ...form, date_fin: e.target.value })}
-                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
             </div>
 
             {form.type === "permission" && (
@@ -147,12 +147,12 @@ const Absences = () => {
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Heure de début</label>
                   <input type="time" value={form.heure_debut} onChange={e => setForm({ ...form, heure_debut: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Heure de fin</label>
                   <input type="time" value={form.heure_fin} onChange={e => setForm({ ...form, heure_fin: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
               </>
             )}
@@ -162,12 +162,12 @@ const Absences = () => {
               onChange={e => setForm({ ...form, motif: e.target.value })}
               placeholder="Motif de l'absence..."
               rows={3}
-              className="md:col-span-2 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="md:col-span-2 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
             />
 
             <button
               type="submit"
-              className="md:col-span-2 bg-[#005DCB] text-white py-3 rounded-xl font-medium hover:bg-[#004BA8] transition w-fit px-8"
+              className="md:col-span-2 bg-[#129547] text-white py-3 rounded-xl font-medium hover:bg-[#0E7739] transition w-fit px-8"
             >
               Soumettre la demande
             </button>
@@ -204,7 +204,7 @@ const Absences = () => {
                   onFocus={() => setSelectedId(demande.id)}
                   onChange={e => setCommentaire(e.target.value)}
                   rows={2}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm mb-3 focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm mb-3 focus:outline-none focus:border-[#129547] placeholder-gray-400"
                 />
                 <div className="flex gap-3">
                   <button

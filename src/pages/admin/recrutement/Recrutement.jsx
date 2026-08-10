@@ -82,7 +82,7 @@ const Recrutement = () => {
   };
 
   const statutBadge = {
-    recue: "bg-blue-50 text-[#005DCB]",
+    recue: "bg-blue-50 text-[#129547]",
     en_entretien: "bg-amber-50 text-amber-600",
     acceptee: "bg-green-50 text-green-600",
     rejetee: "bg-red-50 text-red-600",
@@ -91,7 +91,7 @@ const Recrutement = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -104,7 +104,7 @@ const Recrutement = () => {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+          className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition shadow-md"
         >
           {showForm ? "Annuler" : "+ Nouvelle offre"}
         </button>
@@ -117,18 +117,18 @@ const Recrutement = () => {
             <input
               value={form.titre} onChange={e => setForm({ ...form, titre: e.target.value })}
               placeholder="Titre du poste *" required
-              className="md:col-span-2 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="md:col-span-2 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
             />
             <select
               value={form.departement_id} onChange={e => setForm({ ...form, departement_id: e.target.value })} required
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
             >
               <option value="">Sélectionner un département *</option>
               {departements.map(d => <option key={d.id} value={d.id}>{d.nom}</option>)}
             </select>
             <select
               value={form.type_contrat} onChange={e => setForm({ ...form, type_contrat: e.target.value })}
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
             >
               <option value="CDI">CDI</option>
               <option value="CDD">CDD</option>
@@ -138,19 +138,19 @@ const Recrutement = () => {
             <textarea
               value={form.description} onChange={e => setForm({ ...form, description: e.target.value })}
               placeholder="Description du poste *" rows={4} required
-              className="md:col-span-2 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="md:col-span-2 bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
             />
             <div>
               <label className="text-xs text-gray-500 mb-1 block">Date de publication</label>
               <input type="date" value={form.date_publication} onChange={e => setForm({ ...form, date_publication: e.target.value })}
-                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
             </div>
             <div>
               <label className="text-xs text-gray-500 mb-1 block">Date limite</label>
               <input type="date" value={form.date_limite} onChange={e => setForm({ ...form, date_limite: e.target.value })}
-                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
             </div>
-            <button type="submit" className="md:col-span-2 bg-[#005DCB] text-white py-3 rounded-xl font-medium hover:bg-[#004BA8] transition w-fit px-8">
+            <button type="submit" className="md:col-span-2 bg-[#129547] text-white py-3 rounded-xl font-medium hover:bg-[#0E7739] transition w-fit px-8">
               Publier l'offre
             </button>
           </form>
@@ -246,15 +246,15 @@ const Recrutement = () => {
                             value={entretienForm.date_entretien}
                             onChange={e => setEntretienForm({ ...entretienForm, date_entretien: e.target.value })}
                             required
-                            className="bg-white border border-gray-300 text-gray-900 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#005DCB]"
+                            className="bg-white border border-gray-300 text-gray-900 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#129547]"
                           />
                           <input
                             value={entretienForm.lieu}
                             onChange={e => setEntretienForm({ ...entretienForm, lieu: e.target.value })}
                             placeholder="Lieu"
-                            className="bg-white border border-gray-300 text-gray-900 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#005DCB]"
+                            className="bg-white border border-gray-300 text-gray-900 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-[#129547]"
                           />
-                          <button type="submit" className="bg-[#005DCB] text-white px-3 py-2 rounded-lg text-xs font-medium">
+                          <button type="submit" className="bg-[#129547] text-white px-3 py-2 rounded-lg text-xs font-medium">
                             Confirmer
                           </button>
                         </form>

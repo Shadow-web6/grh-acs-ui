@@ -58,7 +58,7 @@ const MesAbsences = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -71,7 +71,7 @@ const MesAbsences = () => {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+          className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition shadow-md"
         >
           {showForm ? "Annuler" : "+ Effectuer une demande"}
         </button>
@@ -83,7 +83,7 @@ const MesAbsences = () => {
             <select
               value={form.type}
               onChange={e => setForm({ ...form, type: e.target.value })}
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]"
             >
               <option value="conge">Congé</option>
               <option value="permission">Permission</option>
@@ -91,17 +91,17 @@ const MesAbsences = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input type="date" value={form.date_debut} onChange={e => setForm({ ...form, date_debut: e.target.value })} required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               <input type="date" value={form.date_fin} onChange={e => setForm({ ...form, date_fin: e.target.value })}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
             </div>
 
             {form.type === "permission" && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input type="time" value={form.heure_debut} onChange={e => setForm({ ...form, heure_debut: e.target.value })}
-                  className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
                 <input type="time" value={form.heure_fin} onChange={e => setForm({ ...form, heure_fin: e.target.value })}
-                  className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
             )}
 
@@ -111,13 +111,13 @@ const MesAbsences = () => {
               placeholder="Motif de l'absence..."
               rows={3}
               required
-              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400"
+              className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400"
             />
 
             <button
               type="submit"
               disabled={submitting}
-              className="bg-[#005DCB] text-white py-3 rounded-xl font-medium hover:bg-[#004BA8] transition w-fit px-8 disabled:opacity-50"
+              className="bg-[#129547] text-white py-3 rounded-xl font-medium hover:bg-[#0E7739] transition w-fit px-8 disabled:opacity-50"
             >
               {submitting ? "Envoi..." : "Soumettre la demande"}
             </button>

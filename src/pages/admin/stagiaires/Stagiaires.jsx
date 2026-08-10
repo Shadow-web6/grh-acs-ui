@@ -115,7 +115,7 @@ const Stagiaires = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -131,7 +131,7 @@ const Stagiaires = () => {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+          className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition shadow-md"
         >
           {showForm ? "Annuler" : "+ Nouveau stagiaire"}
         </button>
@@ -143,40 +143,40 @@ const Stagiaires = () => {
             <h3 className="text-gray-900 font-semibold mb-5">Informations personnelles</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <input name="prenom" value={form.prenom} onChange={handleChange} placeholder="Prénom *" required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="nom" value={form.nom} onChange={handleChange} placeholder="Nom *" required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="telephone" value={form.telephone} onChange={handleChange} placeholder="Téléphone"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Date de naissance</label>
                 <input name="date_naissance" type="date" value={form.date_naissance} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
               <input name="adresse" value={form.adresse} onChange={handleChange} placeholder="Adresse"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400 md:col-span-2" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400 md:col-span-2" />
             </div>
 
             <h3 className="text-gray-900 font-semibold mb-5">Informations de stage</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select name="departement_id" value={form.departement_id} onChange={handleChange} required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]">
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]">
                 <option value="">Sélectionner un département *</option>
                 {departements.map(d => <option key={d.id} value={d.id}>{d.nom}</option>)}
               </select>
               <input name="poste" value={form.poste} onChange={handleChange} placeholder="Poste / mission"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="ecole_origine" value={form.ecole_origine} onChange={handleChange} placeholder="École d'origine"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Date de début de stage</label>
                 <input name="date_embauche" type="date" value={form.date_embauche} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Date de fin de stage</label>
                 <input name="date_fin_contrat" type="date" value={form.date_fin_contrat} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ const Stagiaires = () => {
               <h3 className="text-gray-900 font-semibold mb-4">Notes</h3>
               <textarea name="notes" value={form.notes} onChange={handleChange} rows={4}
                 placeholder="Observations..."
-                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
             </div>
 
             <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 text-xs text-blue-700">
@@ -212,7 +212,7 @@ const Stagiaires = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-[#005DCB] text-white py-3 rounded-xl font-medium hover:bg-[#004BA8] transition shadow-md disabled:opacity-50"
+              className="w-full bg-[#129547] text-white py-3 rounded-xl font-medium hover:bg-[#0E7739] transition shadow-md disabled:opacity-50"
             >
               {submitting ? "Création..." : "Créer le stagiaire"}
             </button>
@@ -270,7 +270,7 @@ const Stagiaires = () => {
               <h3 className="text-xl font-bold text-gray-900">{selected.user?.name}</h3>
               <div className="flex items-center gap-3">
                 {!editMode && (
-                  <button onClick={() => ouvrirEdition(selected)} className="text-[#005DCB] hover:underline text-xs font-medium flex items-center gap-1">
+                  <button onClick={() => ouvrirEdition(selected)} className="text-[#129547] hover:underline text-xs font-medium flex items-center gap-1">
                     <Pencil className="w-3.5 h-3.5" /> Modifier
                   </button>
                 )}
@@ -283,39 +283,39 @@ const Stagiaires = () => {
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Nom complet</label>
                   <input value={editForm.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Téléphone</label>
                   <input value={editForm.telephone} onChange={e => setEditForm({ ...editForm, telephone: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Département</label>
                   <select value={editForm.departement_id} onChange={e => setEditForm({ ...editForm, departement_id: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]">
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]">
                     {departements.map(d => <option key={d.id} value={d.id}>{d.nom}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Poste / mission</label>
                   <input value={editForm.poste} onChange={e => setEditForm({ ...editForm, poste: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Début du stage</label>
                   <input type="date" value={editForm.date_embauche} onChange={e => setEditForm({ ...editForm, date_embauche: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Fin du stage</label>
                   <input type="date" value={editForm.date_fin_contrat} onChange={e => setEditForm({ ...editForm, date_fin_contrat: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <p className="text-xs text-gray-400">L'email et le mot de passe se modifient uniquement depuis la gestion des utilisateurs (Admin).</p>
                 <div className="flex gap-3 pt-2">
                   <button type="submit" disabled={editSubmitting}
-                    className="bg-[#005DCB] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition disabled:opacity-50">
+                    className="bg-[#129547] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition disabled:opacity-50">
                     {editSubmitting ? "Enregistrement..." : "Enregistrer"}
                   </button>
                   <button type="button" onClick={() => setEditMode(false)}

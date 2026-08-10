@@ -15,7 +15,7 @@ const MonQrCodeContent = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -25,7 +25,7 @@ const MonQrCodeContent = () => {
     </div>
   );
 
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${qrToken}&color=005DCB&bgcolor=ffffff`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${qrToken}&color=129547&bgcolor=ffffff`;
 
   return (
     <div className="max-w-md mx-auto text-center">

@@ -170,7 +170,7 @@ const Utilisateurs = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -183,7 +183,7 @@ const Utilisateurs = () => {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="bg-[#005DCB] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition shadow-md"
+          className="bg-[#129547] text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition shadow-md"
         >
           {showForm ? "Annuler" : "+ Nouveau compte"}
         </button>
@@ -195,7 +195,7 @@ const Utilisateurs = () => {
             key={r}
             onClick={() => setFiltreRole(r)}
             className={`px-4 py-2 rounded-xl text-sm font-medium transition
-              ${filtreRole === r ? "bg-[#005DCB] text-white" : "bg-white border border-gray-200 text-gray-500 hover:text-gray-800"}`}
+              ${filtreRole === r ? "bg-[#129547] text-white" : "bg-white border border-gray-200 text-gray-500 hover:text-gray-800"}`}
           >
             {r === "tous" ? "Tous" : roleLabel[r]}
           </button>
@@ -208,17 +208,17 @@ const Utilisateurs = () => {
             <h3 className="text-gray-900 font-semibold mb-5">👤 Informations du compte</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <input name="prenom" value={form.prenom} onChange={handleChange} placeholder="Prénom *" required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="nom" value={form.nom} onChange={handleChange} placeholder="Nom *" required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="Email *" required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="Mot de passe *" required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <input name="telephone" value={form.telephone} onChange={handleChange} placeholder="Téléphone"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <select name="role" value={form.role} onChange={handleChange}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]">
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]">
                 <option value="employe">Employé</option>
                 <option value="stagiaire">Stagiaire</option>
                 <option value="directeur">Directeur</option>
@@ -228,23 +228,23 @@ const Utilisateurs = () => {
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Date de naissance</label>
                 <input name="date_naissance" type="date" value={form.date_naissance} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
               <input name="adresse" value={form.adresse} onChange={handleChange} placeholder="Adresse"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
             </div>
 
             <h3 className="text-gray-900 font-semibold mb-5">💼 Informations professionnelles</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <select name="departement_id" value={form.departement_id} onChange={handleChange} required
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]">
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]">
                 <option value="">Sélectionner un département *</option>
                 {departements.map(d => <option key={d.id} value={d.id}>{d.nom}</option>)}
               </select>
               <input name="poste" value={form.poste} onChange={handleChange} placeholder="Poste"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <select name="type_contrat" value={form.type_contrat} onChange={handleChange}
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]">
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]">
                 <option value="CDI">CDI</option>
                 <option value="CDD">CDD</option>
                 <option value="Stage">Stage</option>
@@ -253,19 +253,19 @@ const Utilisateurs = () => {
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Date d'embauche</label>
                 <input name="date_embauche" type="date" value={form.date_embauche} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Date fin contrat</label>
                 <input name="date_fin_contrat" type="date" value={form.date_fin_contrat} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
               <input name="salaire" type="number" value={form.salaire} onChange={handleChange} placeholder="Salaire (FCFA)"
-                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               <div>
                 <label className="text-xs text-gray-500 mb-1 block">Jours de congé annuels</label>
                 <input name="jours_conge_annuels" type="number" value={form.jours_conge_annuels} onChange={handleChange}
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB]" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547]" />
               </div>
             </div>
           </div>
@@ -291,13 +291,13 @@ const Utilisateurs = () => {
               <h3 className="text-gray-900 font-semibold mb-4">📝 Notes</h3>
               <textarea name="notes" value={form.notes} onChange={handleChange} rows={4}
                 placeholder="Observations..."
-                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-[#005DCB] text-white py-3 rounded-xl font-medium hover:bg-[#004BA8] transition shadow-md disabled:opacity-50"
+              className="w-full bg-[#129547] text-white py-3 rounded-xl font-medium hover:bg-[#0E7739] transition shadow-md disabled:opacity-50"
             >
               {submitting ? "Création..." : "Créer le compte"}
             </button>
@@ -332,7 +332,7 @@ const Utilisateurs = () => {
                     <div className="flex gap-3">
                       <button
                         onClick={() => ouvrirEdit(c)}
-                        className="text-[#005DCB] hover:underline text-xs font-medium"
+                        className="text-[#129547] hover:underline text-xs font-medium"
                       >
                         Modifier
                       </button>
@@ -377,22 +377,22 @@ const Utilisateurs = () => {
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Nom complet</label>
                   <input value={editForm.name} onChange={e => setEditForm({ ...editForm, name: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Email</label>
                   <input type="email" value={editForm.email} onChange={e => setEditForm({ ...editForm, email: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Téléphone</label>
                   <input value={editForm.telephone} onChange={e => setEditForm({ ...editForm, telephone: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Rôle</label>
                   <select value={editForm.role} onChange={e => setEditForm({ ...editForm, role: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]">
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]">
                     <option value="employe">Employé</option>
                     <option value="stagiaire">Stagiaire</option>
                     <option value="directeur">Directeur</option>
@@ -403,19 +403,19 @@ const Utilisateurs = () => {
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Département</label>
                   <select value={editForm.departement_id} onChange={e => setEditForm({ ...editForm, departement_id: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]">
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]">
                     {departements.map(d => <option key={d.id} value={d.id}>{d.nom}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Poste</label>
                   <input value={editForm.poste} onChange={e => setEditForm({ ...editForm, poste: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Type de contrat</label>
                   <select value={editForm.type_contrat} onChange={e => setEditForm({ ...editForm, type_contrat: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]">
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]">
                     <option value="CDI">CDI</option>
                     <option value="CDD">CDD</option>
                     <option value="Stage">Stage</option>
@@ -425,7 +425,7 @@ const Utilisateurs = () => {
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Salaire (FCFA)</label>
                   <input type="number" value={editForm.salaire} onChange={e => setEditForm({ ...editForm, salaire: e.target.value })}
-                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB]" />
+                    className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
                 </div>
               </div>
 
@@ -436,12 +436,12 @@ const Utilisateurs = () => {
                 <input type="password" value={editForm.password}
                   onChange={e => setEditForm({ ...editForm, password: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#005DCB] placeholder-gray-400" />
+                  className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547] placeholder-gray-400" />
               </div>
 
               <div className="flex gap-3 pt-2">
                 <button type="submit" disabled={editSubmitting}
-                  className="bg-[#005DCB] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#004BA8] transition disabled:opacity-50">
+                  className="bg-[#129547] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#0E7739] transition disabled:opacity-50">
                   {editSubmitting ? "Enregistrement..." : "Enregistrer les modifications"}
                 </button>
                 <button type="button" onClick={() => setEditPanel(null)}
@@ -469,7 +469,7 @@ const Utilisateurs = () => {
 
           {loadingPerms ? (
             <div className="flex justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#005DCB]"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#129547]"></div>
             </div>
           ) : (
             <div className="space-y-3">
@@ -485,7 +485,7 @@ const Utilisateurs = () => {
                     <span className="text-sm text-gray-700">{module.label}</span>
                     <button
                       onClick={() => togglePermission(permissionsPanel.user?.id, module.key, estActive)}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${estActive ? "bg-[#005DCB]" : "bg-gray-200"}`}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${estActive ? "bg-[#129547]" : "bg-gray-200"}`}
                     >
                       <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${estActive ? "translate-x-6" : "translate-x-1"}`} />
                     </button>

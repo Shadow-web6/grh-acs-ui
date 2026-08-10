@@ -107,7 +107,7 @@ const PointageGlobalContent = () => {
         <div className="mt-5 flex justify-center">
           {!scanning ? (
             <button onClick={startScanner}
-              className="bg-[#005DCB] text-white px-8 py-3 rounded-xl font-medium hover:bg-[#004BA8] transition shadow-md flex items-center gap-2">
+              className="bg-[#129547] text-white px-8 py-3 rounded-xl font-medium hover:bg-[#0E7739] transition shadow-md flex items-center gap-2">
               <QrCode className="w-5 h-5" /> Scanner l'affiche
             </button>
           ) : (

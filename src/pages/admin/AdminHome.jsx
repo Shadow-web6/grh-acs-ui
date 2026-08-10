@@ -95,28 +95,28 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <Link
             to={`${basePath}/utilisateurs`}
-            className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#005DCB]/40 hover:shadow-md transition shadow-sm"
+            className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#129547]/40 hover:shadow-md transition shadow-sm"
           >
             <div>
               <p className="text-gray-500 text-sm mb-1">Comptes utilisateurs</p>
-              <p className="text-3xl font-bold text-[#005DCB]">
+              <p className="text-3xl font-bold text-[#129547]">
                 {loading ? "..." : stats.totalComptes}
               </p>
             </div>
-            <Users className="w-8 h-8 text-[#005DCB]" />
+            <Users className="w-8 h-8 text-[#129547]" />
           </Link>
 
           <Link
             to={`${basePath}/departements`}
-            className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#005DCB]/40 hover:shadow-md transition shadow-sm"
+            className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#129547]/40 hover:shadow-md transition shadow-sm"
           >
             <div>
               <p className="text-gray-500 text-sm mb-1">Départements</p>
-              <p className="text-3xl font-bold text-[#005DCB]">
+              <p className="text-3xl font-bold text-[#129547]">
                 {loading ? "..." : stats.totalDepartements}
               </p>
             </div>
-            <Building2 className="w-8 h-8 text-[#005DCB]" />
+            <Building2 className="w-8 h-8 text-[#129547]" />
           </Link>
         </div>
 
@@ -128,7 +128,7 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
               <Link
                 key={i}
                 to={action.to}
-                className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
+                className="bg-[#129547] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#0E7739] transition shadow-md"
               >
                 <Icon className="w-7 h-7" />
                 <span className="text-sm font-medium">{action.label}</span>
@@ -149,7 +149,7 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         <Link
           to={`${basePath}/absences`}
-          className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#005DCB]/40 hover:shadow-md transition shadow-sm"
+          className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#129547]/40 hover:shadow-md transition shadow-sm"
         >
           <div>
             <p className="text-gray-500 text-sm mb-1">Demandes à traiter</p>
@@ -163,7 +163,7 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
         {peutScanner && (
           <Link
             to={`${basePath}/scanner`}
-            className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#005DCB]/40 hover:shadow-md transition shadow-sm"
+            className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center justify-between hover:border-[#129547]/40 hover:shadow-md transition shadow-sm"
           >
             <div>
               <p className="text-gray-500 text-sm mb-1">Présents aujourd'hui</p>
@@ -184,7 +184,7 @@ const AdminHome = ({ basePath = "/admin", role = "admin" }) => {
             <Link
               key={i}
               to={action.to}
-              className="bg-[#005DCB] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#004BA8] transition shadow-md"
+              className="bg-[#129547] text-white p-5 rounded-2xl flex flex-col items-center gap-2 text-center hover:bg-[#0E7739] transition shadow-md"
             >
               <Icon className="w-7 h-7" />
               <span className="text-sm font-medium">{action.label}</span>

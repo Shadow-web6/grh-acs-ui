@@ -13,7 +13,7 @@ const OffresEmploi = () => {
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
-      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#005DCB]"></div>
+      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#129547]"></div>
     </div>
   );
 
@@ -27,7 +27,7 @@ const OffresEmploi = () => {
           <div key={offre.id} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
             <div className="flex justify-between items-start mb-2">
               <h3 className="text-gray-900 font-bold">{offre.titre}</h3>
-              <span className="bg-blue-50 text-[#005DCB] text-xs font-medium px-2.5 py-1 rounded-full">
+              <span className="bg-blue-50 text-[#129547] text-xs font-medium px-2.5 py-1 rounded-full">
                 {offre.type_contrat}
               </span>
             </div>

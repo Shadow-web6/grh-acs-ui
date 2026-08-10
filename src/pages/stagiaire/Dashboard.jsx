@@ -11,6 +11,7 @@ import Recrutement from "../admin/recrutement/Recrutement";
 import HistoriquePresence from "../admin/presences/RapportPresence";
 import Scanner from "../admin/presences/Scanner";
 import { useAuth } from "../../context/AuthContext";
+import TravauxStagiaires from "../admin/travaux/TravauxStagiaires";
 
 const StagiaireDashboard = () => {
   const { hasPermission } = useAuth();

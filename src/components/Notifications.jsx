@@ -58,7 +58,7 @@ const Notifications = () => {
             <div className="flex justify-between items-center p-4 border-b border-gray-100">
               <h3 className="font-semibold text-gray-900 text-sm">Notifications</h3>
               {unread > 0 && (
-                <button onClick={handleLireTout} className="text-xs text-[#005DCB] hover:underline">
+                <button onClick={handleLireTout} className="text-xs text-[#129547] hover:underline">
                   Tout lire
                 </button>
               )}

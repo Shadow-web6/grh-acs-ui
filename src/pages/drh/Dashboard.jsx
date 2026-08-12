@@ -23,14 +23,15 @@ const DrhDashboard = () => {
     { label: "Ressources humaines", items: [
       { path: "/drh/employes", iconKey: "employes", label: "Employés" },
       { path: "/drh/stagiaires", iconKey: "stagiaires", label: "Stagiaires" },
-      ...(hasPermission("absences") || true ? [{ path: "/drh/absences", iconKey: "absences", label: "Absences" }] : []),
-      ...(hasPermission("scanner") || true ? [{ path: "/drh/scanner", iconKey: "scanner", label: "Scanner présence" }] : []),
-      ...(hasPermission("recrutement") || true ? [{ path: "/drh/recrutement", iconKey: "recrutement", label: "Recrutement" }] : []),
+      // Modules accordés par défaut à la création de compte, mais réellement révocables par l'Administrateur
+      ...(hasPermission("absences") ? [{ path: "/drh/absences", iconKey: "absences", label: "Absences" }] : []),
+      ...(hasPermission("scanner") ? [{ path: "/drh/scanner", iconKey: "scanner", label: "Scanner présence" }] : []),
+      ...(hasPermission("recrutement") ? [{ path: "/drh/recrutement", iconKey: "recrutement", label: "Recrutement" }] : []),
       // Travaux stagiaires : retiré du rôle par défaut, uniquement via permission accordée par l'admin
       ...(hasPermission("travaux_stagiaire") ? [{ path: "/drh/travaux-stagiaires", iconKey: "travaux", label: "Travaux stagiaires" }] : []),
     ]},
     { label: "Structure", items: [
-      ...(hasPermission("historique_presence") || true ? [{ path: "/drh/historique-presence", iconKey: "historique", label: "Historique présences" }] : []),
+      ...(hasPermission("historique_presence") ? [{ path: "/drh/historique-presence", iconKey: "historique", label: "Historique présences" }] : []),
       { path: "/drh/departements", iconKey: "departements", label: "Départements" },
     ]},
   ];
@@ -43,11 +44,11 @@ const DrhDashboard = () => {
         <Route path="/departements" element={<Departements basePath="/drh" role="drh" />} />
         <Route path="/employes" element={<Employes />} />
         <Route path="/stagiaires" element={<Stagiaires />} />
-        <Route path="/absences" element={<Absences />} />
-        <Route path="/scanner" element={<Scanner />} />
-        <Route path="/historique-presence" element={<HistoriquePresence />} />
+        {hasPermission("absences") && <Route path="/absences" element={<Absences />} />}
+        {hasPermission("scanner") && <Route path="/scanner" element={<Scanner />} />}
+        {hasPermission("historique_presence") && <Route path="/historique-presence" element={<HistoriquePresence />} />}
         {hasPermission("travaux_stagiaire") && <Route path="/travaux-stagiaires" element={<TravauxStagiaires />} />}
-        <Route path="/recrutement" element={<Recrutement />} />
+        {hasPermission("recrutement") && <Route path="/recrutement" element={<Recrutement />} />}
       </Routes>
     </DashboardLayout>
   );

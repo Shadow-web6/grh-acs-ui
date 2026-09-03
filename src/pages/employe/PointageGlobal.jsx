@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import api from "../../api/axios";
 import { toast } from "react-toastify";
-import { QrCode, CheckCircle2, LogOut, AlertTriangle } from "lucide-react";
+import { QrCode, CheckCircle2, LogOut, AlertTriangle, Clock } from "lucide-react";
 import PinGate from "../../components/PinGate";
 
 const QR_ELEMENT_ID = "qr-reader-global";
@@ -44,8 +44,12 @@ const PointageGlobalContent = () => {
         longitude: position.longitude,
       });
       const data = res.data;
-      setResultat({ success: true, type: data.type, heure: data.heure });
-      toast.success(data.message);
+      setResultat({ success: true, type: data.type, heure: data.heure, enRetard: !!data.en_retard });
+      if (data.en_retard) {
+        toast.warning(data.message);
+      } else {
+        toast.success(data.message);
+      }
     } catch (err) {
       const data = err.response?.data;
       const message = data?.message || err.message || "Erreur lors du scan";
@@ -119,14 +123,24 @@ const PointageGlobalContent = () => {
       </div>
 
       {resultat && (
-        <div className={`mt-6 rounded-2xl p-6 border ${resultat.success ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
+        <div className={`mt-6 rounded-2xl p-6 border ${
+          !resultat.success ? "bg-red-50 border-red-200"
+          : resultat.enRetard ? "bg-amber-50 border-amber-200"
+          : "bg-green-50 border-green-200"
+        }`}>
           {resultat.success ? (
             <div className="text-center">
               <div className="flex justify-center mb-2">
-                {resultat.type === "arrivee" ? <CheckCircle2 className="w-10 h-10 text-green-600" /> : <LogOut className="w-10 h-10 text-amber-600" />}
+                {resultat.type === "arrivee"
+                  ? (resultat.enRetard
+                      ? <Clock className="w-10 h-10 text-amber-600" />
+                      : <CheckCircle2 className="w-10 h-10 text-green-600" />)
+                  : <LogOut className="w-10 h-10 text-amber-600" />}
               </div>
-              <p className="text-green-600 font-medium">
-                {resultat.type === "arrivee" ? "Arrivée enregistrée" : "Départ enregistré"}
+              <p className={`font-medium ${resultat.enRetard ? "text-amber-600" : "text-green-600"}`}>
+                {resultat.type === "arrivee"
+                  ? (resultat.enRetard ? "Arrivée enregistrée — en retard" : "Arrivée enregistrée")
+                  : "Départ enregistré"}
               </p>
               <p className="text-gray-500 text-sm mt-1">à {resultat.heure}</p>
             </div>

@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../api/axios";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const API_URL = "http://127.0.0.1:8000/api";
 
 const Postuler = () => {
   const [offres, setOffres] = useState([]);
@@ -16,8 +14,8 @@ const Postuler = () => {
   });
 
   useEffect(() => {
-    axios.get(`${API_URL}/offres-emploi/publiques`)
-      .then(res => setOffres(res.data.filter(o => o.statut === "ouverte")))
+    api.get("/offres-emploi/publiques")
+      .then(res => setOffres(res.data))
       .finally(() => setLoading(false));
   }, []);
 
@@ -25,7 +23,7 @@ const Postuler = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await axios.post(`${API_URL}/candidatures`, {
+      await api.post("/candidatures", {
         ...form,
         offre_id: selectedOffre.id,
       });

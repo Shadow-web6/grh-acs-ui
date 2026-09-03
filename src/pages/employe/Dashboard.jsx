@@ -4,6 +4,7 @@ import MonProfil from "./MonProfil";
 import MesAbsences from "./MesAbsences";
 import MonQrCode from "./MonQrCode";
 import OffresEmploi from "./OffresEmploi";
+import MesDocuments from "./MesDocuments";
 import Scanner from "../admin/presences/Scanner";
 import HistoriquePresence from "../admin/presences/RapportPresence";
 import Recrutement from "../admin/recrutement/Recrutement";
@@ -23,6 +24,7 @@ const EmployeDashboard = () => {
     { label: "Mon espace", items: [
       { path: "/employe/absences", iconKey: "absences", label: "Mes absences" },
       { path: "/employe/qrcode", iconKey: "qrcode", label: "Mon QR Code" },
+      { path: "/employe/documents", iconKey: "travaux", label: "Mes documents" },
       { path: "/employe/offres", iconKey: "offres", label: "Offres d'emploi" },
       // Modules supplémentaires si permission accordée
       ...(hasPermission("recrutement") ? [{ path: "/employe/recrutement", iconKey: "recrutement", label: "Recrutement" }] : []),
@@ -40,6 +42,7 @@ const EmployeDashboard = () => {
         <Route path="/profil" element={<MonProfil />} />
         <Route path="/absences" element={<MesAbsences />} />
         <Route path="/qrcode" element={<MonQrCode />} />
+        <Route path="/documents" element={<MesDocuments />} />
         <Route path="/offres" element={<OffresEmploi />} />
         {hasPermission("recrutement") && <Route path="/recrutement" element={<Recrutement />} />}
         {hasPermission("scanner") && <Route path="/scanner" element={<Scanner />} />}

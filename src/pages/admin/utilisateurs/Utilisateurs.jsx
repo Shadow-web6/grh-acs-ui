@@ -18,12 +18,14 @@ const Utilisateurs = () => {
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [filtreRole, setFiltreRole] = useState("tous");
-  const [permissionsPanel, setPermissionsPanel] = useState(null); // l'employe_id sélectionné
+  const [permissionsPanel, setPermissionsPanel] = useState(null);
   const [permissionsUtilisateur, setPermissionsUtilisateur] = useState([]);
   const [loadingPerms, setLoadingPerms] = useState(false);
   const [editPanel, setEditPanel] = useState(null);
   const [editForm, setEditForm] = useState({});
+  const [editFiles, setEditFiles] = useState({ cv: null, contrat: null });
   const [editSubmitting, setEditSubmitting] = useState(false);
+  const [toggling, setToggling] = useState(null);
 
   const [form, setForm] = useState({
     prenom: "", nom: "", email: "", password: "", role: "employe",
@@ -56,8 +58,10 @@ const Utilisateurs = () => {
     const { name, value, files } = e.target;
     setForm(prev => ({ ...prev, [name]: files ? files[0] : value }));
   };
+
   const ouvrirEdit = (compte) => {
     setEditPanel(compte);
+    setEditFiles({ cv: null, contrat: null });
     setEditForm({
       name: compte.user?.name || "",
       email: compte.user?.email || "",
@@ -75,9 +79,18 @@ const Utilisateurs = () => {
     e.preventDefault();
     setEditSubmitting(true);
     try {
-      const payload = { ...editForm };
-      if (!payload.password) delete payload.password; // n'envoie pas si vide
-      await api.put(`/utilisateurs/${editPanel.id}`, payload);
+      const formData = new FormData();
+      formData.append("_method", "PUT");
+      Object.entries(editForm).forEach(([key, value]) => {
+        if (key === "password" && !value) return; // n'envoie pas si vide
+        if (value !== null && value !== undefined && value !== "") formData.append(key, value);
+      });
+      if (editFiles.cv) formData.append("cv", editFiles.cv);
+      if (editFiles.contrat) formData.append("contrat", editFiles.contrat);
+
+      await api.post(`/utilisateurs/${editPanel.id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       toast.success("Compte modifié avec succès");
       setEditPanel(null);
       fetchData();
@@ -120,7 +133,14 @@ const Utilisateurs = () => {
   };
 
   const handleDelete = async (id, nom) => {
-    if (!window.confirm(`Supprimer définitivement le compte de ${nom} ? Cette action est irréversible.`)) return;
+    const confirme = window.confirm(
+      `⚠️ Suppression DÉFINITIVE du compte de ${nom}.\n\n` +
+      `Toutes ses données disparaîtront pour toujours : historique de présences, demandes de congés/permissions, documents (CV, contrat, rapports), et tout le reste lié à ce compte.\n\n` +
+      `Cette action est IRRÉVERSIBLE et ne peut pas être annulée.\n\n` +
+      `Si vous souhaitez seulement empêcher cette personne de se connecter tout en gardant son historique, utilisez plutôt "Désactiver".\n\n` +
+      `Confirmez-vous la suppression définitive ?`
+    );
+    if (!confirme) return;
     try {
       await api.delete(`/utilisateurs/${id}`);
       toast.success("Compte supprimé");
@@ -129,6 +149,31 @@ const Utilisateurs = () => {
       toast.error("Erreur lors de la suppression");
     }
   };
+
+  const handleToggleStatut = async (compte) => {
+    const estActif = compte.user?.statut !== "inactif";
+    const nom = compte.user?.name;
+    const message = estActif
+      ? `Désactiver le compte de ${nom} ?\n\n` +
+        `Il ne pourra plus se connecter ni pointer sa présence tant que le compte reste désactivé.\n` +
+        `Toutes ses données (présences, congés, documents) sont conservées, et le compte peut être réactivé à tout moment.`
+      : `Réactiver le compte de ${nom} ?\n\n` +
+        `Il pourra de nouveau se connecter et pointer sa présence normalement.`;
+
+    if (!window.confirm(message)) return;
+
+    setToggling(compte.id);
+    try {
+      await api.put(`/utilisateurs/${compte.id}`, { statut: estActif ? "inactif" : "actif" });
+      toast.success(estActif ? "Compte désactivé" : "Compte réactivé");
+      fetchData();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Erreur lors du changement de statut");
+    } finally {
+      setToggling(null);
+    }
+  };
+
   const modules = [
   { key: "absences", label: "Absences (traitement)" },
   { key: "scanner", label: "Scanner présence" },
@@ -314,12 +359,15 @@ const Utilisateurs = () => {
                 <th className="px-5 py-3 text-left text-gray-500 font-medium">Email</th>
                 <th className="px-5 py-3 text-left text-gray-500 font-medium">Département</th>
                 <th className="px-5 py-3 text-left text-gray-500 font-medium">Rôle</th>
+                <th className="px-5 py-3 text-left text-gray-500 font-medium">Statut</th>
                 <th className="px-5 py-3 text-left text-gray-500 font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {filtered.map(c => (
-                <tr key={c.id} className="border-t border-gray-100 hover:bg-gray-50">
+              {filtered.map(c => {
+                const estActif = c.user?.statut !== "inactif";
+                return (
+                <tr key={c.id} className={`border-t border-gray-100 hover:bg-gray-50 ${!estActif ? "opacity-60" : ""}`}>
                   <td className="px-5 py-4 text-gray-900 font-medium">{c.user?.name}</td>
                   <td className="px-5 py-4 text-gray-500">{c.user?.email}</td>
                   <td className="px-5 py-4 text-gray-500">{c.departement?.nom}</td>
@@ -329,7 +377,12 @@ const Utilisateurs = () => {
                     </span>
                   </td>
                   <td className="px-5 py-4">
-                    <div className="flex gap-3">
+                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${estActif ? "bg-green-50 text-green-600" : "bg-gray-100 text-gray-500"}`}>
+                      {estActif ? "Actif" : "Désactivé"}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex gap-3 flex-wrap">
                       <button
                         onClick={() => ouvrirEdit(c)}
                         className="text-[#129547] hover:underline text-xs font-medium"
@@ -343,6 +396,13 @@ const Utilisateurs = () => {
                         Accès
                       </button>
                       <button
+                        onClick={() => handleToggleStatut(c)}
+                        disabled={toggling === c.id}
+                        className={`text-xs font-medium disabled:opacity-50 ${estActif ? "text-amber-600 hover:text-amber-700" : "text-green-600 hover:text-green-700"}`}
+                      >
+                        {estActif ? "Désactiver" : "Réactiver"}
+                      </button>
+                      <button
                         onClick={() => handleDelete(c.id, c.user?.name)}
                         className="text-red-500 hover:text-red-600 text-xs font-medium"
                       >
@@ -351,10 +411,11 @@ const Utilisateurs = () => {
                     </div>
                   </td>
                 </tr>
-              ))}
+                );
+              })}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan="5" className="px-5 py-8 text-center text-gray-500">Aucun compte trouvé</td>
+                  <td colSpan="6" className="px-5 py-8 text-center text-gray-500">Aucun compte trouvé</td>
                 </tr>
               )}
             </tbody>
@@ -426,6 +487,21 @@ const Utilisateurs = () => {
                   <label className="text-xs text-gray-500 mb-1 block">Salaire (FCFA)</label>
                   <input type="number" value={editForm.salaire} onChange={e => setEditForm({ ...editForm, salaire: e.target.value })}
                     className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#129547]" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-500 mb-1 block">Remplacer le CV (PDF)</label>
+                  <input type="file" accept="application/pdf"
+                    onChange={e => setEditFiles({ ...editFiles, cv: e.target.files[0] })}
+                    className="w-full text-sm text-gray-500 bg-white border border-gray-300 rounded-xl p-2.5 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-100 file:text-gray-700 file:text-xs" />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-500 mb-1 block">Remplacer le contrat (PDF)</label>
+                  <input type="file" accept="application/pdf"
+                    onChange={e => setEditFiles({ ...editFiles, contrat: e.target.files[0] })}
+                    className="w-full text-sm text-gray-500 bg-white border border-gray-300 rounded-xl p-2.5 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-100 file:text-gray-700 file:text-xs" />
                 </div>
               </div>
 

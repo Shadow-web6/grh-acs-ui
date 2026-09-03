@@ -3,6 +3,7 @@ import DashboardLayout from "../../components/DashboardLayout";
 import MesAbsences from "../employe/MesAbsences";
 import MonQrCode from "../employe/MonQrCode";
 import MesTravaux from "./MesTravaux";
+import MesDocuments from "../employe/MesDocuments";
 import OffresEmploi from "../employe/OffresEmploi";
 import MonProfil from "../employe/MonProfil";
 import AccueilStagiaire from "./AccueilStagiaire";
@@ -25,6 +26,7 @@ const StagiaireDashboard = () => {
       { path: "/stagiaire/absences", iconKey: "absences", label: "Mes absences" },
       { path: "/stagiaire/qrcode", iconKey: "qrcode", label: "Mon QR Code" },
       { path: "/stagiaire/travaux", iconKey: "travaux", label: "Travaux effectués" },
+      { path: "/stagiaire/documents", iconKey: "travaux", label: "Mes documents" },
       { path: "/stagiaire/offres", iconKey: "offres", label: "Offres d'emploi" },
       // Modules supplémentaires si permission accordée
       ...(hasPermission("recrutement") ? [{ path: "/stagiaire/recrutement", iconKey: "recrutement", label: "Recrutement" }] : []),
@@ -42,6 +44,7 @@ const StagiaireDashboard = () => {
         <Route path="/absences" element={<MesAbsences />} />
         <Route path="/qrcode" element={<MonQrCode />} />
         <Route path="/travaux" element={<MesTravaux />} />
+        <Route path="/documents" element={<MesDocuments />} />
         <Route path="/offres" element={<OffresEmploi />} />
         {hasPermission("recrutement") && <Route path="/recrutement" element={<Recrutement />} />}
         {hasPermission("scanner") && <Route path="/scanner" element={<Scanner />} />}

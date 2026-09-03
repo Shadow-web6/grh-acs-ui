@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { toast } from "react-toastify";
+import { Trash2 } from "lucide-react";
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -29,11 +30,32 @@ const Notifications = () => {
     } catch {}
   };
 
+  const handleSupprimer = async (id) => {
+    try {
+      await api.delete(`/notifications/${id}`);
+      setNotifications(prev => prev.filter(n => n.id !== id));
+    } catch {
+      toast.error("Erreur lors de la suppression");
+    }
+  };
+
+  const handleSupprimerLues = async () => {
+    try {
+      await api.delete("/notifications-lues");
+      setNotifications(prev => prev.filter(n => !n.read_at));
+      toast.success("Notifications lues supprimées");
+    } catch {
+      toast.error("Erreur lors de la suppression");
+    }
+  };
+
   const getIcon = (type) => {
     if (type === "demande_traitee") return "📋";
     if (type === "presence_scannee") return "📷";
     return "🔔";
   };
+
+  const nbLues = notifications.filter(n => n.read_at).length;
 
   return (
     <div className="relative">
@@ -57,11 +79,18 @@ const Notifications = () => {
           <div className="absolute right-0 top-12 w-80 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 max-h-96 overflow-y-auto">
             <div className="flex justify-between items-center p-4 border-b border-gray-100">
               <h3 className="font-semibold text-gray-900 text-sm">Notifications</h3>
-              {unread > 0 && (
-                <button onClick={handleLireTout} className="text-xs text-[#129547] hover:underline">
-                  Tout lire
-                </button>
-              )}
+              <div className="flex gap-3">
+                {nbLues > 0 && (
+                  <button onClick={handleSupprimerLues} className="text-xs text-gray-400 hover:text-red-500">
+                    Supprimer les lues
+                  </button>
+                )}
+                {unread > 0 && (
+                  <button onClick={handleLireTout} className="text-xs text-[#129547] hover:underline">
+                    Tout lire
+                  </button>
+                )}
+              </div>
             </div>
 
             {notifications.length === 0 ? (
@@ -70,16 +99,23 @@ const Notifications = () => {
               notifications.map(notif => (
                 <div
                   key={notif.id}
-                  className={`p-4 border-b border-gray-100 hover:bg-gray-50 ${!notif.read_at ? "bg-blue-50/50" : ""}`}
+                  className={`p-4 border-b border-gray-100 hover:bg-gray-50 group ${!notif.read_at ? "bg-blue-50/50" : ""}`}
                 >
                   <div className="flex gap-3">
                     <span className="text-lg">{getIcon(notif.data?.type)}</span>
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <p className="text-sm text-gray-700">{notif.data?.message}</p>
                       <p className="text-xs text-gray-400 mt-1">
                         {new Date(notif.created_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })}
                       </p>
                     </div>
+                    <button
+                      onClick={() => handleSupprimer(notif.id)}
+                      className="text-gray-300 hover:text-red-500 shrink-0 opacity-0 group-hover:opacity-100 transition"
+                      title="Supprimer"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
               ))
